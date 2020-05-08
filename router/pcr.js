@@ -6,6 +6,7 @@ const {
   addBox,
   boxExist,
   deleteBox,
+  editBox,
 } = require("../services/pcr");
 const boom = require("boom");
 const router = express.Router();
@@ -43,6 +44,13 @@ router.post("/deletebox", function (req, res) {
   console.log(req.body);
   deleteBox(req.body.owner).then((data) => {
     new Result("成功删除box").success(res);
+  });
+});
+
+router.post("/editbox", function (req, res) {
+  console.log(req.body);
+  editBox(req.body).then((data) => {
+    new Result(data, "成功").success(res);
   });
 });
 

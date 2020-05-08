@@ -35,10 +35,17 @@ function deleteBox(owner) {
   return querySql(`delete from role_list where owner='${owner}'`);
 }
 
+async function editBox(item) {
+  const res1 = await deleteBox(item[0].owner);
+  const res2 = await addBox(item);
+  return { res1, res2 };
+}
+
 module.exports = {
   getRoles,
   getList,
   addBox,
   boxExist,
   deleteBox,
+  editBox,
 };
